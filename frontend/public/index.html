@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dad Joke Generator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <p class="eyebrow">Node.js 25 · JavaScript</p>
+        <h1>Dad Joke Generator</h1>
+        <p class="subtitle">The kind of humor that makes everyone groan.</p>
+      </header>
+
+      <section class="joke-card" aria-live="polite">
+        <p id="setup" class="setup">Click the button for your first joke.</p>
+        <p id="punchline" class="punchline hidden"></p>
+      </section>
+
+      <div class="actions">
+        <button id="new-joke-btn" type="button">Tell me a joke</button>
+        <button id="reveal-btn" type="button" class="secondary" disabled>Reveal punchline</button>
+      </div>
+
+      <p id="status" class="status" role="status"></p>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

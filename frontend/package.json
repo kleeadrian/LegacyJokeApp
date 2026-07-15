@@ -1,0 +1,17 @@
+{
+  "name": "dadjoke-frontend",
+  "version": "1.0.0",
+  "description": "Dad joke frontend static server",
+  "main": "src/server.js",
+  "type": "module",
+  "engines": {
+    "node": ">=25.0.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/**/*.test.js",
+    "lint": "node --check src/server.js && node --check public/app.js"
+  },
+  "license": "MIT"
+}
