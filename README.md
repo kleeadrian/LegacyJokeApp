@@ -1,6 +1,6 @@
 # Dad Joke Application
 
-A sample full-stack JavaScript application built for **Node.js 25**, with a separate frontend and backend.
+A sample full-stack JavaScript application built for **Node.js 26**, with a separate frontend and backend.
 
 ## Project structure
 
@@ -15,7 +15,7 @@ dadjoke-app/
 
 ## Requirements
 
-- Node.js 25 or later
+- Node.js 26 or later
 
 ## Quick start
 
@@ -87,11 +87,11 @@ The included `Jenkinsfile` runs:
 6. Package artifact
 7. Deploy (on `main` branch only)
 
-Configure Jenkins with the **NodeJS Plugin** and a Node 25 installation named `25` to match the pipeline's `tools` block.
+Configure Jenkins with the **NodeJS Plugin** and a Node 26 installation named `26` to match the pipeline's `tools` block.
 
 ## Example Jenkins job setup
 
 1. Create a **Pipeline** job in Jenkins.
 2. Point it at this repository.
 3. Set the script path to `dadjoke-app/Jenkinsfile`.
-4. Ensure Node.js 25 is available on the agent or via the NodeJS tool installer.
+4. Ensure Node.js 26 is available on the agent or via the NodeJS tool installer.

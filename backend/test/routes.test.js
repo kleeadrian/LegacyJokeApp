@@ -33,6 +33,7 @@ describe("API routes", () => {
     const response = await request("/api/health");
     assert.equal(response.status, 200);
     assert.equal(response.body.status, "ok");
+    assert.equal(response.body.runtime, "node-26");
   });
 
   it("returns all jokes", async () => {

@@ -4,9 +4,10 @@
   "description": "Sample dad joke application with Node.js frontend and backend",
   "private": true,
   "engines": {
-    "node": ">=25.0.0"
+    "node": ">=26.0.0"
   },
   "scripts": {
+    "prestart": "node scripts/check-node-version.js",
     "install:all": "npm install --prefix backend && npm install --prefix frontend",
     "start:backend": "npm start --prefix backend",
     "start:frontend": "npm start --prefix frontend",

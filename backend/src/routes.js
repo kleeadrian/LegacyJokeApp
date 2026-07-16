@@ -4,7 +4,7 @@ import { jokes, getRandomJoke } from "./jokes.js";
 const router = Router();
 
 router.get("/health", (_req, res) => {
-  res.json({ status: "ok", service: "dadjoke-backend" });
+  res.json({ status: "ok", service: "dadjoke-backend", runtime: "node-26" });
 });
 
 router.get("/jokes", (_req, res) => {

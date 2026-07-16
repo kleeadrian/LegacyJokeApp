@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '25'
+        NODE_VERSION = '26'
         APP_DIR = 'dadjoke-app'
         BACKEND_PORT = '3001'
         FRONTEND_PORT = '3000'
