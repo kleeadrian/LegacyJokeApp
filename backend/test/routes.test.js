@@ -49,4 +49,24 @@ describe("API routes", () => {
     assert.equal(typeof response.body.setup, "string");
     assert.equal(typeof response.body.punchline, "string");
   });
+
+  it("returns a single joke by id", async () => {
+    const response = await request("/api/jokes/1");
+    assert.equal(response.status, 200);
+    assert.equal(response.body.id, 1);
+    assert.equal(typeof response.body.setup, "string");
+    assert.equal(typeof response.body.punchline, "string");
+  });
+
+  it("returns 404 for a non-existent joke id", async () => {
+    const response = await request("/api/jokes/9999");
+    assert.equal(response.status, 404);
+    assert.equal(response.body.error, "Joke not found");
+  });
+
+  it("returns 404 for an unknown route", async () => {
+    const response = await request("/api/does-not-exist");
+    assert.equal(response.status, 404);
+    assert.equal(response.body.error, "Not found");
+  });
 });

@@ -17,4 +17,15 @@ describe("frontend assets", () => {
       assert.ok(content.length > 0);
     }
   });
+
+  it("references its stylesheet and script from index.html", async () => {
+    const html = await fs.readFile(path.join(publicDir, "index.html"), "utf8");
+    assert.match(html, /styles\.css/);
+    assert.match(html, /app\.js/);
+  });
+
+  it("fetches configuration or jokes from app.js", async () => {
+    const appJs = await fs.readFile(path.join(publicDir, "app.js"), "utf8");
+    assert.match(appJs, /fetch\s*\(/);
+  });
 });
