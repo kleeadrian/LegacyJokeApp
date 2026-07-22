@@ -7,22 +7,36 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main class="container">
-      <header>
-        <p class="eyebrow">Node.js 25 · JavaScript</p>
-        <h1>Dad Joke Generator</h1>
-        <p class="subtitle">The kind of humor that makes everyone groan.</p>
-      </header>
-
-      <section class="joke-card" aria-live="polite">
-        <p id="setup" class="setup">Click the button for your first joke.</p>
-        <p id="punchline" class="punchline hidden"></p>
+    <main class="wireframe">
+      <section class="section" aria-labelledby="joke-heading">
+        <h2 id="joke-heading">Joke</h2>
+        <p id="setup" class="content" aria-live="polite">
+          Click the button below for your first joke.
+        </p>
+        <button id="new-joke-btn" type="button">Tell me a joke</button>
       </section>
 
-      <div class="actions">
-        <button id="new-joke-btn" type="button">Tell me a joke</button>
-        <button id="reveal-btn" type="button" class="secondary" disabled>Reveal punchline</button>
-      </div>
+      <section class="section" aria-labelledby="punchline-heading">
+        <h2 id="punchline-heading">Punchline</h2>
+        <p id="punchline" class="content" aria-live="polite"></p>
+      </section>
+
+      <section class="section" aria-labelledby="rating-heading">
+        <h2 id="rating-heading">Rating of the Joke</h2>
+        <div
+          id="rating-controls"
+          class="rating-controls"
+          role="radiogroup"
+          aria-label="Rate this joke from 1 to 5"
+        >
+          <button type="button" class="rating-btn" data-rating="1" disabled>1</button>
+          <button type="button" class="rating-btn" data-rating="2" disabled>2</button>
+          <button type="button" class="rating-btn" data-rating="3" disabled>3</button>
+          <button type="button" class="rating-btn" data-rating="4" disabled>4</button>
+          <button type="button" class="rating-btn" data-rating="5" disabled>5</button>
+        </div>
+        <p id="rating-summary" class="content muted"></p>
+      </section>
 
       <p id="status" class="status" role="status"></p>
     </main>
