@@ -1,10 +1,15 @@
 const setupEl = document.getElementById("setup");
 const punchlineEl = document.getElementById("punchline");
 const statusEl = document.getElementById("status");
+const ratingSectionEl = document.getElementById("rating-section");
+const ratingSummaryEl = document.getElementById("rating-summary");
 const newJokeBtn = document.getElementById("new-joke-btn");
 const revealBtn = document.getElementById("reveal-btn");
+const ratingButtons = [...document.querySelectorAll(".rating-btn")];
 
 let apiUrl = "http://localhost:3001";
+let selectedRating = null;
+let currentPunchline = "";
 
 async function loadConfig() {
   const response = await fetch("/config.json");
@@ -17,15 +22,37 @@ function setStatus(message, isError = false) {
   statusEl.classList.toggle("error", isError);
 }
 
-function resetPunchline() {
+function hidePunchline() {
   punchlineEl.textContent = "";
-  punchlineEl.classList.add("hidden");
+  punchlineEl.classList.add("is-hidden");
   revealBtn.disabled = true;
+  ratingSectionEl.classList.add("is-hidden");
+}
+
+function resetRating() {
+  selectedRating = null;
+  ratingSummaryEl.textContent = "";
+
+  for (const button of ratingButtons) {
+    button.disabled = true;
+    button.classList.remove("selected");
+    button.setAttribute("aria-checked", "false");
+  }
+}
+
+function enableRating() {
+  ratingSectionEl.classList.remove("is-hidden");
+
+  for (const button of ratingButtons) {
+    button.disabled = false;
+  }
 }
 
 async function fetchRandomJoke() {
   setStatus("Fetching a fresh dad joke...");
-  resetPunchline();
+  hidePunchline();
+  resetRating();
+  currentPunchline = "";
 
   try {
     const response = await fetch(`${apiUrl}/api/jokes/random`);
@@ -36,9 +63,9 @@ async function fetchRandomJoke() {
 
     const joke = await response.json();
     setupEl.textContent = joke.setup;
-    punchlineEl.textContent = joke.punchline;
+    currentPunchline = joke.punchline;
     revealBtn.disabled = false;
-    setStatus("Ready when you are.");
+    setStatus("Punchline hidden. Reveal it when you are ready.");
   } catch (error) {
     setupEl.textContent = "Could not load a joke right now.";
     setStatus(error.message, true);
@@ -46,12 +73,39 @@ async function fetchRandomJoke() {
 }
 
 function revealPunchline() {
-  punchlineEl.classList.remove("hidden");
+  if (!currentPunchline) {
+    return;
+  }
+
+  punchlineEl.textContent = currentPunchline;
+  punchlineEl.classList.remove("is-hidden");
   revealBtn.disabled = true;
-  setStatus("Groan responsibly.");
+  enableRating();
+  setStatus("Thanks for playing along.");
+}
+
+function selectRating(rating) {
+  selectedRating = rating;
+
+  for (const button of ratingButtons) {
+    const isSelected = Number(button.dataset.rating) === rating;
+    button.classList.toggle("selected", isSelected);
+    button.setAttribute("aria-checked", String(isSelected));
+  }
+
+  ratingSummaryEl.textContent = `You rated this joke ${rating} out of 5.`;
+  setStatus("Thanks for the feedback.");
 }
 
 newJokeBtn.addEventListener("click", fetchRandomJoke);
 revealBtn.addEventListener("click", revealPunchline);
+
+for (const button of ratingButtons) {
+  button.setAttribute("role", "radio");
+  button.setAttribute("aria-checked", "false");
+  button.addEventListener("click", () => {
+    selectRating(Number(button.dataset.rating));
+  });
+}
 
 await loadConfig();

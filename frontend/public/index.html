@@ -7,24 +7,57 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main class="container">
-      <header>
-        <p class="eyebrow">Node.js 25 · JavaScript</p>
-        <h1>Dad Joke Generator</h1>
-        <p class="subtitle">The kind of humor that makes everyone groan.</p>
-      </header>
+    <main class="app">
+      <article class="card">
+        <p class="meta">NODE.JS 25 · JAVASCRIPT</p>
+        <h1 class="title">Dad Joke Generator</h1>
+        <p class="tagline">The kind of humor that makes everyone groan.</p>
 
-      <section class="joke-card" aria-live="polite">
-        <p id="setup" class="setup">Click the button for your first joke.</p>
-        <p id="punchline" class="punchline hidden"></p>
-      </section>
+        <div class="joke-box" aria-labelledby="joke-heading">
+          <h2 id="joke-heading" class="visually-hidden">Joke</h2>
+          <p id="setup" class="setup" aria-live="polite">
+            Click &ldquo;Tell me a joke&rdquo; for your first setup.
+          </p>
+          <p id="punchline" class="punchline is-hidden" aria-live="polite"></p>
+        </div>
 
-      <div class="actions">
-        <button id="new-joke-btn" type="button">Tell me a joke</button>
-        <button id="reveal-btn" type="button" class="secondary" disabled>Reveal punchline</button>
-      </div>
+        <div class="actions">
+          <button id="new-joke-btn" class="btn btn-primary" type="button">
+            Tell me a joke
+          </button>
+          <button
+            id="reveal-btn"
+            class="btn btn-secondary"
+            type="button"
+            disabled
+          >
+            Reveal punchline
+          </button>
+        </div>
 
-      <p id="status" class="status" role="status"></p>
+        <p id="status" class="status" role="status">Ready when you are.</p>
+
+        <section
+          id="rating-section"
+          class="rating-section is-hidden"
+          aria-labelledby="rating-heading"
+        >
+          <h2 id="rating-heading" class="rating-heading">Rate this joke</h2>
+          <div
+            id="rating-controls"
+            class="rating-controls"
+            role="radiogroup"
+            aria-label="Rate this joke from 1 to 5"
+          >
+            <button type="button" class="rating-btn" data-rating="1" disabled>1</button>
+            <button type="button" class="rating-btn" data-rating="2" disabled>2</button>
+            <button type="button" class="rating-btn" data-rating="3" disabled>3</button>
+            <button type="button" class="rating-btn" data-rating="4" disabled>4</button>
+            <button type="button" class="rating-btn" data-rating="5" disabled>5</button>
+          </div>
+          <p id="rating-summary" class="rating-summary"></p>
+        </section>
+      </article>
     </main>
 
     <script src="/app.js" type="module"></script>
